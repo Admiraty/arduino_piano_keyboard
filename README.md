@@ -23,11 +23,13 @@ On general purpose computer I am running :
 I am running it on raspberry pi 4, on it I have a file /bin/piano which contains :
 
    stty -F 9600
-   taskset 0xe fluidsynth -a alsa /usr/share/sounds/sf2/FluidR3_GM.sf2 -c=8 -z=64 < /dev/ttyUSB0 > /dev/null
+   taskset 0xe fluidsynth -a alsa /usr/share/sounds/sf2/FluidR3_GM.sf2 -c4 < /dev/ttyUSB0 > /dev/null
 
-   I run this as a service, arduino plugged into raspberry pi ( USB )
+I run this as a service, arduino plugged into raspberry pi ( USB )
 
+With the default raspbian, I was getting audio artefacts, I changed the fluidsynth command to '-c4' instead of '-c8 -z64'; I also recompiled the kernel with the rt_patches. Now my fluidsynth runs smooth without artefacts and without noticeable lag.
 
+ 
    
    
 
