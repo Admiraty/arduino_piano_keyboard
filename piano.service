@@ -1,0 +1,10 @@
+[Unit]
+Description=Piano
+
+[Service]
+Type=simple
+ExecStart=/bin/sh /bin/piano
+
+[Install]
+WantedBy=multi-user.target
+
