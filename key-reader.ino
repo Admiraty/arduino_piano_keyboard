@@ -28,7 +28,7 @@ void setup() {
 
 
      //Output to serial
-          Serial.begin( 9600 );
+     Serial.begin( 9600 );
 
      // Set the gain 3, because it sounds nicer on my computer
      Serial.println("gain 3");
@@ -242,9 +242,8 @@ void loop() {
                          // b = 127;
 
                          // @note to future self : this is where you need to add a curve for a lighter touch
-                         int velocity = max( min ( 127, -1 * deltaT * 7338 / 10000000 + 127 ), 1 );
-
-
+                         long int velocity = 0.3 * deltaT / 100;
+                         
                          // Fluid synth notation
                          Serial.print( "noteon 1 ");
 
@@ -252,7 +251,8 @@ void loop() {
                          Serial.print( note + FIRST_NOTE );
 
                          Serial.print( " ");
-                         Serial.println( velocity );
+                         Serial.print( 127 - (min( 127, max( 0, velocity ) )) );
+                         Serial.println( "");
                          times[note] = 0;
                     }
                }
@@ -265,9 +265,11 @@ void loop() {
 
                }
           }
-     }
-
+     
+     
      // reset output pin
      digitalWrite( cols[c], HIGH  );
+     
+
 }
 }
